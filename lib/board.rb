@@ -6,10 +6,6 @@ class Board
         @cells = cells 
     end
 
-    def create_board(size)
-        Board.new(Array.new(size*size, "-"))
-    end
-
     def current_player
         cells.count("-") % 2 == 0 ? "O" : "X"
     end

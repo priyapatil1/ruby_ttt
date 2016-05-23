@@ -1,10 +1,11 @@
-require 'console'
+require 'console_game'
 
-describe Console do
+describe ConsoleGame do
     let(:output) {StringIO.new("")}
+    let(:input) {StringIO.new("")}
+    let(:console) {Console.new(input, output)}
 
     it "gets a number from user" do
-        output = StringIO.new("")
         console = Console.new(StringIO.new("3\n"), output)
         (expect(console.get_valid_input(8)).to eq 3)
     end

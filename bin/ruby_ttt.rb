@@ -4,6 +4,8 @@ $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 
 require "game"
 require "console"
+require "console_game"
+require "human_player"
 
 begin
     empty_board = ["-", "-", "-",
@@ -12,7 +14,10 @@ begin
 
     console = Console.new(STDIN, Kernel)
     board = Board.new(empty_board)
-    Game.new(console, board).start()
+    player_x = HumanPlayer.new(console, "X")
+    player_o = HumanPlayer.new(console, "O")
+    game = Game.new(board, player_x, player_o)
+    ConsoleGame.new(game, console).start
 end
 
 

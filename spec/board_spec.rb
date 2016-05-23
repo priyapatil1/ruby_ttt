@@ -35,10 +35,6 @@ describe Board do
         expect(board.positions("-")).to eq([0, 1, 2, 3, 4, 5, 6, 7, 8])
     end
 
-    it "can create a board" do
-        board = Board.new(empty_three)
-        expect(board.create_board(3).display).to eq("---\n---\n---\n")
-    end
 
     it "can calculate the current player on a board" do
         board = Board.new(empty_three)

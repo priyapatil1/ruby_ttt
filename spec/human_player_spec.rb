@@ -1,4 +1,5 @@
 require "human_player"
+require "console"
 
 describe HumanPlayer do
     empty_three = ["-", "-", "-",
@@ -7,16 +8,19 @@ describe HumanPlayer do
 
     let(:input) {StringIO.new("3\n")}
     let(:output) {StringIO.new("")}
+    let(:game) {Game.new(board, player_x, player_o)}
     let(:console) {Console.new(input, output)}
+    let(:console_game) {ConsoleGame.new(game, console)}
+    let(:player_x) {HumanPlayer.new(console, "X")}
+    let(:player_o) {HumanPlayer.new(console, "O")}
     let(:board) {Board.new(empty_three)}
-    let(:human_player) {HumanPlayer.new(console, "X")}
 
     it "has X as a mark" do
-        expect(human_player.mark).to eq "X"
+        expect(player_x.mark).to eq "X"
     end
 
     it "can get an input from the user" do 
-      expect(human_player.move(board)).to eq(3)
+      expect(player_x.move(board)).to eq(3)
     end
 end
 
