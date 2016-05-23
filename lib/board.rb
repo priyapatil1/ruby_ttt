@@ -16,8 +16,8 @@ class Board
     end
 
     def mark(mark, position)
-        cells[position] = mark
         new_cells = cells.clone
+        new_cells[position] = mark
         Board.new(new_cells)
     end
 

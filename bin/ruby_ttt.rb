@@ -6,6 +6,7 @@ require "game"
 require "console"
 require "console_game"
 require "human_player"
+require "computer_player"
 
 begin
     empty_board = ["-", "-", "-",
@@ -15,7 +16,7 @@ begin
     console = Console.new(STDIN, Kernel)
     board = Board.new(empty_board)
     player_x = HumanPlayer.new(console, "X")
-    player_o = HumanPlayer.new(console, "O")
+    player_o = ComputerPlayer.new("O")
     game = Game.new(board, player_x, player_o)
     ConsoleGame.new(game, console).start
 end

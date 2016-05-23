@@ -14,17 +14,14 @@ class Game
         @board = Board.new(Array.new(size*size, "-"))
     end
 
-    def play_next_move(mark, move)
-      @board.mark(mark, move)
-    end
-
     def calculate_player
       @board.positions("-").count % 2 == 0 ? @player_o : @player_x
     end
 
     def mark_board
-      player = calculate_player
-      @board.mark(player.mark, player.move(@board))
+      current_player = calculate_player
+      current_player_move = current_player.move(@board)
+      @board = board.mark(current_player.mark, current_player_move)
     end
 
     def game_over?
