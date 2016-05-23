@@ -16,11 +16,11 @@ class ConsoleGame
   end
 
   def game_loop
-    console.clear_screen
     console.show_output(@game.board.display)
     while
       !@game.game_over?
       @game.mark_board
+      console.clear_screen
       console.show_output(@game.board.display)
     end
     console.end_of_game_message
