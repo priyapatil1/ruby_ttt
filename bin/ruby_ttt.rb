@@ -2,23 +2,23 @@
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 
-require "game"
 require "console"
-require "console_game"
-require "human_player"
-require "computer_player"
+require "menu"
 
 begin
     empty_board = ["-", "-", "-",
                    "-", "-", "-",
                    "-", "-", "-"]
 
+    board = Board.new(empty_board) 
+    app = Qt::Application.new (ARGV)
+    gui = Gui.new(board)
+    gui.show
+    app.exec
+
     console = Console.new(STDIN, Kernel)
-    board = Board.new(empty_board)
-    player_x = HumanPlayer.new(console, "X")
-    player_o = ComputerPlayer.new("O")
-    game = Game.new(board, player_x, player_o)
-    ConsoleGame.new(game, console).start
+    menu = Menu.new(console)
+    menu.start
 end
 
 

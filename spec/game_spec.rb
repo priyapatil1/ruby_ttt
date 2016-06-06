@@ -12,17 +12,26 @@ describe Game do
                    "-", "-", "-",
                    "-", "-", "-"]
 
+    half_played_board = ["X", "O", "X",
+                         "-", "O", "-",
+                         "-", "-", "-"]
+
     it "can switch players" do
-        board = Board.new(console)
-        game = Game.new(empty_board, player_x, player_o)
+        board = Board.new(empty_board)
+        game = Game.new(board, player_x, player_o)
         (expect(game.switch_players("X")).to eq "O")
     end
 
     it "can create a board" do
-        board = Board.new(console)
-        game = Game.new(empty_board, player_x, player_o)
-        expect(game.create_board(3).display).to eq("---\n---\n---\n")
+        board = Board.new(empty_board)
+        game = Game.new(board, player_x, player_o)
+        expect(game.board.display).to eq("---\n---\n---\n")
     end
 
+    it "can find empty position" do
+        board = Board.new(half_played_board)
+        game = Game.new(board, player_x, player_o)
+        expect(game.empty_position?(0)).to eq false 
+    end
 end
 

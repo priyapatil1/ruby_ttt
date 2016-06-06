@@ -7,14 +7,6 @@ class ConsoleGame
     @console = console
   end
 
-  def start
-    @console.greeting_message
-    input = console.get_valid_input(10)
-    board = @game.create_board(input)
-    console.show_output(board.display)
-    game_loop
-  end
-
   def game_loop
     console.show_output(@game.board.display)
     while

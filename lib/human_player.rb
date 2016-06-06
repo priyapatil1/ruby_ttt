@@ -12,5 +12,4 @@ class HumanPlayer
     def move(board)
       @console.get_valid_input(board.cells.size)
     end
-
 end

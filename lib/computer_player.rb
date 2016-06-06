@@ -39,9 +39,7 @@ class ComputerPlayer
       end
 
       alpha = [alpha, current_best[:score]].max
-      if alpha >= beta
-        break
-      end
+      break if alpha > beta
     end
 
     best_move(current_best[:index], current_best[:score])

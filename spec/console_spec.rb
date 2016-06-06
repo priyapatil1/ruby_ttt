@@ -13,7 +13,7 @@ describe ConsoleGame do
     it "shows a greeting message" do
         console = Console.new(StringIO.new(""), output)
         console.greeting_message
-        (expect(output.string.chomp).to include ("Hi please choose a board size"))
+        (expect(output.string.chomp).to include ("Tic Tac Toe"))
     end
 
     it "gets a valid number from user" do
