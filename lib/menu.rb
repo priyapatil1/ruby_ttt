@@ -17,10 +17,23 @@ class Menu
   def start
     @console.greeting_message
     @console.show_output(display_choices)
-    input = @console.get_valid_input(10)
     @console.ask_board_size
-    size = @console.get_valid_input(10)
+    input = get_input(4)
+    size = get_input(10)
     created_game = @game_setup.create(input, size)
     @game_setup.start(@console)
+  end
+
+  def get_input(size)
+    input = @console.get_valid_input
+    if !valid_input(input, size)
+      get_input(size)
+    else
+      input
+    end
+  end
+
+  def valid_input(input, max_size)
+    (0..max_size).include?(input)
   end
 end

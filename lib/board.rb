@@ -1,6 +1,6 @@
 class Board
 
-    attr_accessor :cells
+    attr_reader :cells
 
     def initialize(cells)
         @cells = cells 
@@ -17,13 +17,17 @@ class Board
     end
 
     def mark(mark, position)
+      if cells[position] == "-" && (0..@cells.size).include?(position)
         new_cells = cells.clone
         new_cells[position] = mark
         Board.new(new_cells)
+      else
+        Board.new(cells)
+      end
     end
 
     def full?
-        !cells.include?("-")
+      !cells.include?("-")
     end
 
     def positions(mark)
@@ -74,4 +78,10 @@ class Board
     def any_win?
       win?("X") || win?('O')
     end
+
+
+    private
+
+    attr_writer :cells
+
 end

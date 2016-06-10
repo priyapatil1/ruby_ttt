@@ -10,6 +10,6 @@ class HumanPlayer
     end
 
     def move(board)
-      @console.get_valid_input(board.cells.size)
+      @console.get_valid_input
     end
 end

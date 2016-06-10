@@ -15,3 +15,4 @@ RSpec::Matchers.define :have_text do |expected|
     end
   end
 end
+
