@@ -19,7 +19,7 @@ describe Gui do
     end
 
     it 'has a title' do
-      expect(display.windowTitle).to eq("Tic Tac Toe")
+      expect(display.windowTitle).to eq("Tic Tac Toe: Human v Human")
     end
 
     it 'has a status bar' do
@@ -36,6 +36,7 @@ describe Gui do
 
     it 'has a default size' do
       expect(display.height).to eq(1605)
+      expect(display.width).to eq(1605)
     end
 
     it "has a grid layout" do
@@ -53,7 +54,7 @@ describe Gui do
 
   describe 'effects of user choices' do
     it 'changes status bar after move made' do
-      display.create_buttons
+      display.create_buttons(board)
       click_buttons(["1"])
       expect(display.find_child(Qt::StatusBar, 'game status').currentMessage).to eq("O's turn")
     end
@@ -65,7 +66,7 @@ describe Gui do
     end
 
     it 'can changes display when button is clicked' do
-      display.create_buttons
+      display.create_buttons(board)
       click_buttons(["1"])
       first_cell = find_widget("1")
       expect(first_cell.text).to eq "X" 
@@ -73,21 +74,21 @@ describe Gui do
   end
 
   xit 'shows a message box when the game has been won' do
-    display.create_buttons
+    display.create_buttons(board)
     click_buttons(["0", "5", "1", "6", "2", "7"])
     message_box = find_widget_by_text("Game Over, X has won! Play Again?")
     expect(message_box).to be_kind_of(Qt::MessageBox)
   end
 
   xit 'does not allow the user to choose an occupied position' do 
-    display.create_buttons
+    display.create_buttons(board)
     click_buttons(["0", "0", "1", "6", "2", "7"])
     message_box = find_widget_by_text("Game Over")
     expect(message_box).to be_kind_of(Qt::MessageBox)
   end
 
   xit 'allows a player to play a new game' do 
-    display.create_buttons
+    display.create_buttons(board)
     click_buttons(["0", "0", "1", "6", "2", "7"])
     message_box = find_widget_by_text("Game Over! X has won! Play again?")
     expect(message_box).to be_kind_of(Qt::MessageBox)

@@ -3,6 +3,7 @@
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 
 require "console"
+require "main_menu"
 require "menu"
 
 begin
@@ -10,9 +11,8 @@ begin
                    "-", "-", "-",
                    "-", "-", "-"]
 
-    board = Board.new(empty_board) 
     app = Qt::Application.new (ARGV)
-    gui = Gui.new(board)
+    gui = MainMenu.new
     gui.show
     app.exec
 
