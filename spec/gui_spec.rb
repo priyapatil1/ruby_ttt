@@ -60,7 +60,7 @@ describe Gui do
     end
 
     xit 'changes status bar when winner found' do
-      display.create_buttons
+      display.create_buttons(board)
       click_buttons(["0", "5", "1", "6", "2", "7"])
       expect(display.find_child(Qt::StatusBar, 'game status').currentMessage).to eq("X is the winner!")
     end
@@ -68,8 +68,7 @@ describe Gui do
     it 'can changes display when button is clicked' do
       display.create_buttons(board)
       click_buttons(["1"])
-      first_cell = find_widget("1")
-      expect(first_cell.text).to eq "X" 
+      expect(display.buttons[1].text).to eq "X" 
     end
   end
 

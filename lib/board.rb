@@ -3,17 +3,11 @@ class Board
     attr_accessor :cells
 
     def initialize(cells)
-        @cells = cells 
+      @cells = cells 
     end
 
-    def current_player
-        cells.count("-") % 2 == 0 ? "O" : "X"
-    end
-
-    def display
-        size = cells.size
-        cells.each_slice(Math.sqrt(size))
-        .flat_map{|line| [line, "\n"]}.join("")
+    def mark_at(index)
+      cells[index]
     end
 
     def mark(mark, position)
@@ -24,6 +18,10 @@ class Board
 
     def full?
         !cells.include?("-")
+    end
+
+    def played_cells
+      cells.select { |cell| cell != '-' }
     end
 
     def positions(mark)

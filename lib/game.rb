@@ -11,16 +11,20 @@ class Game
         @player_o = player_o
     end
 
-    def calculate_player
-      @board.positions("-")
+    def next_player
+      @board.played_cells
+        .count % 2 == 0 ? @player_x : @player_o
+    end
+
+    def previous_player
+      @board.played_cells
         .count % 2 == 0 ? @player_o : @player_x
     end
 
     def mark_board
-      current_player = calculate_player
-      current_player_move = current_player.move(board)
-      @board = board.mark(current_player.mark, current_player_move)
-      @board.display
+      return @board if game_over?
+      current_player_move = next_player.move(board)
+      @board = board.mark(next_player.mark, current_player_move)
     end
 
     def empty_position?(input)
@@ -33,5 +37,9 @@ class Game
 
     def switch_players(mark)
       mark == "X" ? "O" : "X"
+    end
+
+    def mark_at(index)
+      board.cells[index]
     end
 end
