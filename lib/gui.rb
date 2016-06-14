@@ -64,7 +64,7 @@ class Gui < Qt::Widget
   
   def play_computer_move
     @game.mark_board
-    update_display
+    show_display
   end
 
   def show_display
