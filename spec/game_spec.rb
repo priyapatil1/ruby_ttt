@@ -42,4 +42,3 @@ describe Game do
         expect(game.empty_position?(0)).to eq false 
     end
 end
-

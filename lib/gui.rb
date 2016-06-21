@@ -184,4 +184,3 @@ class Gui < Qt::Widget
     exit
   end
 end
-
