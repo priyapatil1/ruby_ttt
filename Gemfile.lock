@@ -67,6 +67,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler
   guard
   guard-rspec
   pry
