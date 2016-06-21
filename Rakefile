@@ -1,3 +1,5 @@
+require 'rspec'
+
 task :default => [:spec]
 
 desc 'run Rspec specs'
