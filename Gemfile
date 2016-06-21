@@ -6,6 +6,7 @@ gem "rspec"
 gem 'qtbindings'
 
 gem 'simplecov', :require => false, :group => :test
+gem 'qtbindings', :require => true, :group => :test
 
 group :development do
   gem 'qtbindings'
