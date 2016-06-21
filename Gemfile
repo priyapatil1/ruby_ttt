@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "rake"
 gem "bundler"
 gem "rspec"
+gem 'qtbindings'
 
 gem 'simplecov', :require => false, :group => :test
 
