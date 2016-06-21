@@ -32,6 +32,15 @@ class Gui < Qt::Widget
     delay(2000)
   end
 
+  def game_loop
+    while !@game.game_over?
+      if @game.next_player.has_move?
+        @game.mark_board
+        @game.next_player.previous_move = current_player.next_move
+      end
+    end
+  end
+
   def create_buttons(board)
     @buttons = (0..(board.cells.size - 1)).map do |index|
       create_button(index)
@@ -61,7 +70,7 @@ class Gui < Qt::Widget
   def delay(time)
     Qt::Timer.singleShot(time, self, SLOT(:play_computer_move))
   end
-  
+
   def play_computer_move
     @game.mark_board
     show_display
