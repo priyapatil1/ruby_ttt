@@ -2,7 +2,7 @@ language: ruby
 
 before_install: bundle install
 
-install: sudo apt-get install libqt4-dev qt4-qmake
+install: sudo apt-get install libqt4-dev
 
 rvm:
   - 2.3.0

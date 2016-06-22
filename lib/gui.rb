@@ -22,9 +22,9 @@ class Gui < Qt::Widget
 
   def create_game(board)
     #@player_o = GuiPlayer.new(self, "O")
-    @player_x = GuiPlayer.new(self, "X")
+    #@player_x = GuiPlayer.new(self, "X")
     @player_o = GuiComputerPlayer.new(self, "O", ComputerPlayer.new("O"))
-    #@player_x = GuiComputerPlayer.new(self, "X", ComputerPlayer.new("X"))
+    @player_x = GuiComputerPlayer.new(self, "X", ComputerPlayer.new("X"))
     @game = Game.new(@board, @player_x, @player_o)
   end
 
@@ -36,7 +36,6 @@ class Gui < Qt::Widget
   end
 
   def game_loop
-    connect(button, SIGNAL(:clicked), self, SLOT(:game_loop))
     while !@game.game_over? 
       if @game.next_player.has_move?
         @game.mark_board
@@ -156,6 +155,7 @@ class Gui < Qt::Widget
     button.object_name = index.to_s
     button = style_button(button)
     connect(button, SIGNAL(:clicked), self, SLOT(:click))
+    connect(button, SIGNAL(:clicked), self, SLOT(:game_loop))
     @layout.addWidget(button)
     button
   end
