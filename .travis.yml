@@ -1,5 +1,7 @@
 language: ruby
 
+install: sudo get-apt update
+         sudo apt-get install libqt4-dev qt4-qmake
 rvm:
   - 2.3.0
 

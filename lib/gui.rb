@@ -1,8 +1,9 @@
 require 'qt'
+require 'gui_computer_player'
 
 class Gui < Qt::Widget
 
-  slots :click, :quit, :create_4x4, :create_3x3, :play_computer_move
+  slots :click, :quit, :create_4x4, :create_3x3, :play_computer_move, :game_loop
 
   attr_reader :size
   attr_reader :buttons
@@ -15,14 +16,14 @@ class Gui < Qt::Widget
     @board = board
     @size = Math.sqrt(board.cells.size) - 1
     setup_dimensions
-    create_game(board)
+    create_game(@board)
     setup_display(size, board)
   end
 
   def create_game(board)
+    @player_o = GuiPlayer.new(self, "O")
     @player_x = GuiPlayer.new(self, "X")
-    @player_o = ComputerPlayer.new("O")
-    @game = Game.new(board, @player_x, @player_o)
+    @game = Game.new(@board, @player_x, @player_o)
   end
 
   def click
@@ -30,15 +31,6 @@ class Gui < Qt::Widget
     make_move(clicked_button)
     show_display
     delay(2000)
-  end
-
-  def game_loop
-    while !@game.game_over?
-      if @game.next_player.has_move?
-        @game.mark_board
-        @game.next_player.previous_move = current_player.next_move
-      end
-    end
   end
 
   def create_buttons(board)
@@ -64,6 +56,7 @@ class Gui < Qt::Widget
 
   def make_move(clicked_button)
     @game.next_player.next_move = clicked_button
+    @game.next_player.has_move = true
     @game.mark_board
   end
 

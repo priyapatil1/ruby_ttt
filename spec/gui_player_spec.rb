@@ -7,10 +7,31 @@ describe GuiPlayer do
   end
 
   let(:board) {Board.new(Array.new(9, "-"))}
-  let(:display) {Gui.new(board)}
+  let(:gui) {Gui.new(board)}
+  let(:player) {GuiPlayer.new(gui, "X")}
 
   it 'has a mark X' do
-    gui_player = GuiPlayer.new(Gui.new(board), "X")
-    expect(gui_player.mark).to eq "X" 
+    expect(player.mark).to eq "X" 
+  end
+
+  it 'sets has mark to true when a move is given' do 
+    player.next_move = 3
+    expect(player.has_move?).to eq true
+  end
+
+  xit 'sets has move to false when move made' do
+    gui.create_buttons(board)
+    click_buttons(["1"])
+    expect(player.has_move).to eq true
+  end
+
+  def click_buttons(buttons)
+    buttons.each do |button|
+      find_widget(button).click
+    end
+  end
+
+  def find_widget(name) 
+    gui.children.find {|d| d.object_name == name}
   end
 end
