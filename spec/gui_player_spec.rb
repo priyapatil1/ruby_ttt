@@ -19,10 +19,10 @@ describe GuiPlayer do
     expect(player.has_move?).to eq true
   end
 
-  xit 'sets has move to false when move made' do
-    gui.create_buttons(board)
-    click_buttons(["1"])
-    expect(player.has_move).to eq true
+  it 'sets has move to false when move made' do
+    player.next_move = 3
+    player.previous_move = 3
+    expect(player.has_move?).to eq false 
   end
 
   def click_buttons(buttons)
