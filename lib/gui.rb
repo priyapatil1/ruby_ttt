@@ -21,17 +21,17 @@ class Gui < Qt::Widget
   end
 
   def create_game(board)
-    #@player_o = GuiPlayer.new(self, "O")
-    #@player_x = GuiPlayer.new(self, "X")
-    @player_o = GuiComputerPlayer.new(self, "O", ComputerPlayer.new("O"))
-    @player_x = GuiComputerPlayer.new(self, "X", ComputerPlayer.new("X"))
+    @player_o = GuiPlayer.new(self, "O")
+    @player_x = GuiPlayer.new(self, "X")
+    #@player_o = GuiComputerPlayer.new(self, "O", ComputerPlayer.new("O"))
+    #@player_x = GuiComputerPlayer.new(self, "X", ComputerPlayer.new("X"))
     @game = Game.new(@board, @player_x, @player_o)
   end
 
   def click
     clicked_button = @layout.indexOf(sender)
     make_move(clicked_button)
-    #show_display
+    show_display
     #delay(2000)
   end
 
@@ -67,6 +67,7 @@ class Gui < Qt::Widget
 
   def make_move(clicked_button)
     @game.next_player.next_move = clicked_button
+    @game.mark_board
   end
 
   def delay(time)
@@ -155,7 +156,7 @@ class Gui < Qt::Widget
     button.object_name = index.to_s
     button = style_button(button)
     connect(button, SIGNAL(:clicked), self, SLOT(:click))
-    connect(button, SIGNAL(:clicked), self, SLOT(:game_loop))
+    #connect(button, SIGNAL(:clicked), self, SLOT(:game_loop))
     @layout.addWidget(button)
     button
   end
