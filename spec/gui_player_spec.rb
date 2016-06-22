@@ -21,7 +21,7 @@ describe GuiPlayer do
 
   it 'sets has move to false when move made' do
     player.next_move = 3
-    player.previous_move = 3
+    player.move(board)
     expect(player.has_move?).to eq false 
   end
 

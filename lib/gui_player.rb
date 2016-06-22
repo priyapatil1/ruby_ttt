@@ -12,8 +12,12 @@ class GuiPlayer
   end
 
   def move(board)
-    @previous_move = @next_move
     @next_move
+    move_played
+  end
+
+  def move_played
+    @previous_move = @next_move
   end
 
   def has_move?
