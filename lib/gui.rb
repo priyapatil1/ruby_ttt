@@ -35,6 +35,10 @@ class Gui < Qt::Widget
     #delay(2000)
   end
 
+  def start_game_loop
+    game_loop
+  end
+
   def game_loop
     while !@game.game_over? 
       if @game.next_player.has_move?
