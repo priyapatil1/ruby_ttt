@@ -12,6 +12,7 @@ class GuiPlayer
   end
 
   def move(board)
+    @previous_move = @next_move
     @next_move
   end
 
