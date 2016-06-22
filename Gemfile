@@ -1,16 +1,15 @@
 source "https://rubygems.org"
 
 gem "rake"
-gem "bundler"
-gem "rspec"
 gem 'qtbindings'
 
-gem 'simplecov', :require => false, :group => :test
+group :development, :test do
+  gem 'pry'
+end
 
-group :development do
+group :test do
   gem 'rspec'
-  gem 'simplecov'
+  gem 'simplecov', require: false
   gem 'guard'
   gem 'guard-rspec'
-  gem 'pry'
 end

@@ -1,3 +1,4 @@
+require "spec_helper"
 require "computer_player"
 
 describe ComputerPlayer do
