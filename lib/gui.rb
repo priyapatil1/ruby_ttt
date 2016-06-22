@@ -35,11 +35,8 @@ class Gui < Qt::Widget
     #delay(2000)
   end
 
-  def start_game_loop
-    game_loop
-  end
-
   def game_loop
+    connect(button, SIGNAL(:clicked), self, SLOT(:game_loop))
     while !@game.game_over? 
       if @game.next_player.has_move?
         @game.mark_board
@@ -159,7 +156,6 @@ class Gui < Qt::Widget
     button.object_name = index.to_s
     button = style_button(button)
     connect(button, SIGNAL(:clicked), self, SLOT(:click))
-    #connect(button, SIGNAL(:clicked), self, SLOT(:game_loop))
     @layout.addWidget(button)
     button
   end
