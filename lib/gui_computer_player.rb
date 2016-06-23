@@ -3,8 +3,7 @@ class GuiComputerPlayer
   attr_accessor :next_move
   attr_accessor :previous_move
 
-  def initialize(gui, symbol, computer_player)
-    @gui = gui
+  def initialize(symbol, computer_player)
     @symbol = symbol
     @computer_player = computer_player
     @previous_move = -1
@@ -22,5 +21,4 @@ class GuiComputerPlayer
   def mark 
     @symbol
   end
-
 end

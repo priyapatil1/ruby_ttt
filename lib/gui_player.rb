@@ -4,8 +4,7 @@ class GuiPlayer
   attr_accessor :has_move
   attr_accessor :previous_move
 
-  def initialize(gui, symbol)
-    @gui = gui
+  def initialize(symbol)
     @symbol = symbol
     @previous_move = -1
     @next_move = -1

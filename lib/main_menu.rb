@@ -71,7 +71,10 @@ class MainMenu < Qt::Widget
                    "-", "-", "-"]
 
     board = Board.new(empty_board) 
-    three_by_three = Gui.new(board)
+    player_x = GuiPlayer.new("X")
+    player_o = GuiPlayer.new("O")
+    game = Game.new(board, player_x, player_o)
+    three_by_three = Gui.new(board, game)
     three_by_three.show
   end
 
@@ -81,7 +84,11 @@ class MainMenu < Qt::Widget
                    "-", "-", "-"]
 
     board = Board.new(empty_board) 
-    three_by_three = Gui.new(board)
+    player_x = GuiPlayer.new("X")
+    player_o = GuiComputerPlayer.new("O", ComputerPlayer.new("O"))
+    game = Game.new(board, player_x, player_o)
+    board = Board.new(empty_board) 
+    three_by_three = Gui.new(board, game)
     three_by_three.show
   end
 
@@ -91,7 +98,10 @@ class MainMenu < Qt::Widget
                    "-", "-", "-"]
 
     board = Board.new(empty_board) 
-    three_by_three = Gui.new(board)
+    player_x = GuiComputerPlayer.new("X", ComputerPlayer.new("X"))
+    player_o = GuiPlayer.new("O")
+    game = Game.new(board, player_x, player_o)
+    three_by_three = Gui.new(board, game)
     three_by_three.show
   end
 end

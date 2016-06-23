@@ -7,8 +7,7 @@ describe GuiPlayer do
   end
 
   let(:board) {Board.new(Array.new(9, "-"))}
-  let(:gui) {Gui.new(board)}
-  let(:player) {GuiPlayer.new(gui, "X")}
+  let(:player) {GuiPlayer.new("X")}
 
   it 'has a mark X' do
     expect(player.mark).to eq "X" 

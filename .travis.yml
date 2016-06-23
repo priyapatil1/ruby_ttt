@@ -1,9 +1,8 @@
 language: ruby
 
 before_install: bundle install
-
-install: sudo apt-get install libqt4-dev
-
+                usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+                brew install qt
 rvm:
   - 2.3.0
 
