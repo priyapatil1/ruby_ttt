@@ -1,9 +1,9 @@
 language: ruby
-
-before_install: bundle install
                 
-before_install: brew update
-                brew install qt
+before_install: 
+                - bundle install
+                - brew update
+                - brew install qt
 rvm:
   - 2.3.0
 

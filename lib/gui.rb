@@ -30,6 +30,7 @@ class Gui < Qt::Widget
         @game.mark_board
         show_display
     end
+    show_display
   end
 
   def create_buttons(board)
@@ -160,7 +161,7 @@ class Gui < Qt::Widget
     click = message_box_setup(current_player).exec
     case click 
     when Qt::MessageBox::Yes
-      self.class.new(Board.new(Array.new(@board.cells.size, "-"))).show
+      self.class.new(Game.new(Board.new(Array.new(@board.cells.size, "-")), @game.player_x, @game.player_o)).show
     end 
   end
 
