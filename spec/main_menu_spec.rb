@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'qt'
 require 'main_menu'
 require 'qt_helpers'
 

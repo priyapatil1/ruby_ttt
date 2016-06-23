@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'qt'
 require 'qt_helpers'
 require 'gui'
 
