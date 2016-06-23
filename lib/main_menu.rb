@@ -1,11 +1,12 @@
-require 'qt'
+require 'Qt'
 
 class MainMenu < Qt::Widget
   EMPTY_3x3   = ["-", "-", "-",
                  "-", "-", "-",
                  "-", "-", "-"]
 
-  slots :click_hvh, :click_hvc, :click_cvh
+
+  slots :click_hvh, :click_hvc, :click_cvh, :click_cvc
 
   attr_reader :three_by_three
 

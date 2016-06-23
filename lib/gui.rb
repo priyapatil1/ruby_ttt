@@ -1,4 +1,4 @@
-require 'qt'
+require 'Qt'
 require 'gui_computer_player'
 
 class Gui < Qt::Widget
@@ -18,6 +18,7 @@ class Gui < Qt::Widget
     @size = Math.sqrt(@board.cells.size) - 1
     setup_dimensions
     setup_display(size, @board)
+    game_loop
   end
 
   def click
@@ -144,7 +145,6 @@ class Gui < Qt::Widget
     button.object_name = index.to_s
     button = style_button(button)
     connect(button, SIGNAL(:clicked), self, SLOT(:click))
-    connect(button, SIGNAL(:clicked), self, SLOT(:game_loop))
     @layout.addWidget(button)
     button
   end
