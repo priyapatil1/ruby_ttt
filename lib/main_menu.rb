@@ -1,6 +1,9 @@
 require 'qt'
 
 class MainMenu < Qt::Widget
+  EMPTY_3x3   = ["-", "-", "-",
+                 "-", "-", "-",
+                 "-", "-", "-"]
 
   slots :click_hvh, :click_hvc, :click_cvh
 
@@ -66,11 +69,7 @@ class MainMenu < Qt::Widget
   end
 
   def click_hvh
-    empty_board = ["-", "-", "-",
-                   "-", "-", "-",
-                   "-", "-", "-"]
-
-    board = Board.new(empty_board) 
+    board = Board.new(EMPTY_3x3) 
     player_x = GuiPlayer.new("X")
     player_o = GuiPlayer.new("O")
     game = Game.new(board, player_x, player_o)
@@ -79,25 +78,16 @@ class MainMenu < Qt::Widget
   end
 
   def click_hvc
-    empty_board = ["-", "-", "-",
-                   "-", "-", "-",
-                   "-", "-", "-"]
-
-    board = Board.new(empty_board) 
+    board = Board.new(EMPTY_3x3) 
     player_x = GuiPlayer.new("X")
     player_o = GuiComputerPlayer.new("O", ComputerPlayer.new("O"))
     game = Game.new(board, player_x, player_o)
-    board = Board.new(empty_board) 
     three_by_three = Gui.new(game)
     three_by_three.show
   end
 
   def click_cvh
-    empty_board = ["-", "-", "-",
-                   "-", "-", "-",
-                   "-", "-", "-"]
-
-    board = Board.new(empty_board) 
+    board = Board.new(EMPTY_3x3) 
     player_x = GuiComputerPlayer.new("X", ComputerPlayer.new("X"))
     player_o = GuiPlayer.new("O")
     game = Game.new(board, player_x, player_o)
