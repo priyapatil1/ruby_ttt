@@ -14,7 +14,7 @@ describe Gui do
   let(:player_x) {GuiPlayer.new("X")}
   let(:player_o) {GuiPlayer.new("O")}
   let(:game) {Game.new(board, player_x, player_o)}
-  let(:gui) {Gui.new(board, game)}
+  let(:gui) {Gui.new(game)}
 
   describe 'gui elements' do
     it 'is a window' do

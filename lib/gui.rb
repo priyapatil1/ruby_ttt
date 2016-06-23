@@ -11,13 +11,13 @@ class Gui < Qt::Widget
   CELLS_4x4 = 16
   CELLS_3x3 = 9 
 
-  def initialize(board, game)
+  def initialize(game)
     super(nil)
     @game = game
-    @board = board
-    @size = Math.sqrt(board.cells.size) - 1
+    @board = @game.board
+    @size = Math.sqrt(@board.cells.size) - 1
     setup_dimensions
-    setup_display(size, board)
+    setup_display(size, @board)
   end
 
   def click
