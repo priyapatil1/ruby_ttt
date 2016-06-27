@@ -15,10 +15,6 @@ begin
     gui = MainMenu.new
     gui.show
     app.exec
-
-    console = Console.new(STDIN, Kernel)
-    menu = Menu.new(console)
-    menu.start
 end
 
 

@@ -6,8 +6,6 @@ class GuiComputerPlayer
   def initialize(symbol, computer_player)
     @symbol = symbol
     @computer_player = computer_player
-    @previous_move = -1
-    @next_move = -2
   end
 
   def move(board)

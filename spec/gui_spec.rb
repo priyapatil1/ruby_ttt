@@ -10,9 +10,9 @@ describe Gui do
   end
 
   let(:board) {Board.new(Array.new(9, "-"))}
-  let(:player_x) {GuiPlayer.new("X")}
-  let(:player_o) {GuiPlayer.new("O")}
-  let(:game) {Game.new(board, player_x, player_o)}
+  let(:human_player_x) {GuiPlayer.new("X")}
+  let(:human_player_o) {GuiPlayer.new("O")}
+  let(:game) {Game.new(board, human_player_x, human_player_o)}
   let(:gui) {Gui.new(game)}
 
   describe 'gui elements' do
@@ -56,7 +56,14 @@ describe Gui do
   end
 
   describe 'effects of user choices' do
-    xit 'changes status bar after move made' do
+
+    it 'changes the status message if the game is a draw' do
+      gui.create_buttons(board)
+      click_buttons(["0","1","2","5","3","6","4","8","7"])
+      expect(gui.find_child(Qt::StatusBar, 'game status').currentMessage).to eq("It's a draw!")
+    end
+
+    it 'changes status bar after move made' do
       gui.create_buttons(board)
       click_buttons(["1"])
       expect(gui.find_child(Qt::StatusBar, 'game status').currentMessage).to eq("O's turn")
@@ -68,7 +75,7 @@ describe Gui do
       expect(gui.find_child(Qt::StatusBar, 'game status').currentMessage).to eq("X is the winner!")
     end
 
-    xit 'can changes gui when button is clicked' do
+    it 'can changes gui when button is clicked' do
       gui.create_buttons(board)
       click_buttons(["1"])
       expect(gui.buttons[1].text).to eq "X" 
