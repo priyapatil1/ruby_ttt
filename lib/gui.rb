@@ -18,7 +18,6 @@ class Gui < Qt::Widget
     @size = Math.sqrt(@board.cells.size) - 1
     setup_dimensions
     setup_display(size, @board)
-    game_loop
   end
 
   def click
@@ -28,10 +27,9 @@ class Gui < Qt::Widget
 
   def game_loop
     while !@game.game_over? && @game.next_player.has_move?
-        @game.mark_board
-        show_display
+      @game.mark_board
+      show_display
     end
-    show_display
   end
 
   def create_buttons(board)
@@ -86,6 +84,8 @@ class Gui < Qt::Widget
   def status_message
     if !@game.game_over?
       @game.next_player.mark + "'s turn"
+    elsif !@game.board.any_win? && @game.board.full?
+      return "It's a draw!"
     else
       @game.previous_player.mark + " is the winner!"
       end_of_game_popup(@game.previous_player.mark)
@@ -145,6 +145,7 @@ class Gui < Qt::Widget
     button.object_name = index.to_s
     button = style_button(button)
     connect(button, SIGNAL(:clicked), self, SLOT(:click))
+    connect(button, SIGNAL(:clicked), self, SLOT(:game_loop))
     @layout.addWidget(button)
     button
   end
@@ -174,11 +175,11 @@ class Gui < Qt::Widget
   end
 
   def create_4x4
-    Gui.new(Board.new(Array.new(CELLS_4x4 , "-"))).show
+    Gui.new(Game.new(Board.new(Array.new(CELLS_4x4 , "-")), @game.player_x, @game.player_o)).show
   end
 
   def create_3x3 
-    Gui.new(Board.new(Array.new(CELLS_3x3, "-"))).show
+    Gui.new(Game.new(Board.new(Array.new(CELLS_3x3, "-")), @game.player_x, @game.player_o)).show
   end
 
   def quit
