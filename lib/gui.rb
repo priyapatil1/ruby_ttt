@@ -1,9 +1,8 @@
 require 'qt'
 
 class Gui < Qt::Widget
-  slots :click
-  slots :quit
-  slots :four_game
+  slots :click, :quit, :four_game
+
   attr_reader :size
 
   def initialize(board)
@@ -12,14 +11,18 @@ class Gui < Qt::Widget
     self.setStyleSheet("background-color: #FFF5C3")
     self.resize(1605, 1605)
     @board = board
+    @game = create_game(board)
     @size = Math.sqrt(board.cells.size) - 1
-    @current_mark = "images/smiley_face.png" 
-    player_x = GuiPlayer.new(self, "X")
-    player_o = GuiPlayer.new(self, "O")
-    @game = Game.new(@board, player_x, player_o)
+    @current_mark = "images/cj.png" 
     create_layout(size)
     create_statusbar
     create_menubar
+  end
+
+  def create_game(board)
+    player_x = GuiPlayer.new(self, "X")
+    player_o = GuiPlayer.new(self, "O")
+    game = Game.new(board, player_x, player_o)
   end
 
   def create_layout(size)
@@ -56,7 +59,6 @@ class Gui < Qt::Widget
   def four_game
     Gui.new(Board.new(Array.new(16, "-"))).show
   end
-
 
   def create_buttons
     for index in 0..(@board.cells.size - 1) do
@@ -128,7 +130,7 @@ class Gui < Qt::Widget
   end
 
   def images
-     @current_mark == "images/smiley_face.png" ? "images/glasses_face.png" : "images/smiley_face.png"
+     @current_mark == "images/cj.png" ? "images/glasses_face.png" : "images/cj.png"
   end
 
 end
