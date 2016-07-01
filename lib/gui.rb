@@ -27,7 +27,6 @@ class Gui < Qt::Widget
 
   def game_loop
     while !@game.game_over? && @game.next_player.has_move?
-      sleep(5)
       @game.mark_board
       show_display
     end
